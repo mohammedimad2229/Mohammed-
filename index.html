@@ -1,60 +1,167 @@
-<!DOCTYPE
-<html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="mohaed">
-    <title>Game</title>
-    <link <!DOCTYPE>
-    <link rel="stylesheet" href="Gameee.css">
+    <title>Game Page</title>
+    <style>
+        /* إعدادات عامة للجسم */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* لتوسيط الحاوية أفقياً */
+        }
+
+        /* الحاوية الرئيسية التي طلبتها (Container) */
+        .main-container {
+            width: 80%;            /* العرض 80% كما طلبت */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;    /* لتوسيط النصوص داخل الحاوية */
+        }
+
+        /* تنسيق العنوان */
+        .stp1 {
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        /* تنسيق الجدول */
+        .QQ {
+            width: 100%;           /* الجدول يأخذ كامل عرض الـ 80% */
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background-color: #fff;
+        }
+
+        .QQ td, .QQ th {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .GG {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        /* تنسيق الفاصل */
+        .ee {
+            color: #ccc;
+            letter-spacing: 5px;
+            margin: 20px 0;
+        }
+
+        /* تنسيق نموذج الإدخال (Form) */
+        .te {
+            text-align: right;     /* محاذاة العناصر لليمين (لأنها بالعربي) */
+            max-width: 300px;      /* تحديد عرض النموذج داخل الحاوية */
+            margin: 0 auto;        /* توسيط النموذج */
+        }
+
+        .te label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .te input[type="text"], 
+        .te input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* لضمان عدم خروج الحقول عن العرض المحدد */
+        }
+
+        .te input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .te input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .checkbox-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox-group input {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 <body>
-<div class="we">
-  <h1 class="stp1">My Favorite Games</h1>
-  <table border="1" class="QQ">
-    <caption class="GG">Game</caption>
-    <tr>
-      <td>Name Game</td>
-      <td>نوعها</td>
-      <td>تقييمها</td>
-    </tr>
-    <tr>
-      <td>Naruto</td>
-      <td>VSV</td>
-      <td>90/100</td>
-    </tr>
-    <tr>
-      <td>Dragone ball</td>
-      <td>Ball</td>
-      <td>80/100</td>
-    </tr>
-    <tr>
-      <td>One Piece</td>
-      <td>Loofy</td>
-      <td>HhHhHhHh</td>
-    </tr>
-  </table>
-  <div class="Mo">
-  </div>
-  <p class="ee">--------------------------------------------------</p>
-  <form name="weee">
-  <div class="te">
-  <label>Usernames</label>
-  <input type="text">
-  
-  <br>
-  <label>Password</label>
-  <input type="password">
-  
-  <br>
-  <label>remen</label>
-  <input type="checkbox">
 
-  <br>
-  <input type="submit" value="sing up">
-  <label>send the numbers</label>
-  </div>
-  </form>
-</div>
+    <!-- الحاوية التي تجمع كل المحتوى -->
+    <div class="main-container">
+        
+        <h1 class="stp1">My Favorite Games</h1>
+
+        <table class="QQ">
+            <caption class="GG">Game</caption>
+            <thead>
+                <tr style="background-color: #f8f9fa;">
+                    <th>Name Game</th>
+                    <th>نوعها</th>
+                    <th>تقييمها</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Naruto</td>
+                    <td>VSV</td>
+                    <td>90/100</td>
+                </tr>
+                <tr>
+                    <td>Dragon Ball</td>
+                    <td>Ball</td>
+                    <td>80/100</td>
+                </tr>
+                <tr>
+                    <td>One Piece</td>
+                    <td>Luffy</td>
+                    <td>100/100</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="ee">------------------------------------</p>
+
+        <form name="weee">
+            <div class="te">
+                <label for="user">Usernames</label>
+                <input type="text" id="user" placeholder="Enter username">
+                
+                <label for="pass">Password</label>
+                <input type="password" id="pass" placeholder="Enter password">
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remen">
+                    <label for="remen" style="display:inline;">Remember me</label>
+                </div>
+
+                <input type="submit" value="Sign Up">
+                <p style="font-size: 0.8em; color: #666; margin-top: 10px;">Send the numbers</p>
+            </div>
+        </form>
+
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,10 @@
+body{
+    background-image: url('img_20260507_192823_792.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 50vh;
+    margin: 0;
+}

@@ -1,5 +1,5 @@
 body{
-    background-image: url('img_20260507_192823_792.jpg');
+    background-image: url('—Pngtree—white paper texture background a_15880779.jpg');
     
     background-size: cover;
     background-position: center;
@@ -7,4 +7,102 @@ body{
 
     height: 50vh;
     margin: 0;
+    background-repeat: repeat-x;
+    padding: 0;
+}
+.nn
+{
+  color:black;
+  font-size: 10px;
+  text-align: center;
+  background-color:#9996FF;
+  font-weight: 100;
+  
+}
+img
+{
+ height: 170px;
+ width: 170px;
+ padding: 3px;
+}
+.ee
+{
+  text-align: center;
+  font-weight: bold;
+}
+.ss
+{
+
+  font-weight: 540;
+}
+.hh
+{
+  padding: 10px;
+  color:black;
+  text-shadow: 0.5px 0px 1px;
+}
+.t
+{
+  padding-top: 1px;
+  margin-top: 5px;
+  font-weight: 400px;
+}
+.hai
+{
+  background-color:#AB0058;
+}
+hr
+{
+  border-block-color: black;
+  margin-top: -11;
+}
+.hin
+{
+  color:red;
+}
+.ttt
+{
+  width: 1px;
+  height: 3px;
+}
+.r
+{
+  width: 345px;
+  height: 115px;
+  border-block-color: red;
+  
+}
+.fr
+{
+  display:flex;
+  flex-direction: row;
+  padding: 1;
+  margin-left: -10;
+  font-size:15;
+  margin-top:3;
+}
+.zzz
+{
+  text-align: center;
+  font-weight:500;
+  font-size:18;
+  margin-top:19;
+}
+.writ
+{
+  
+  text-align: center;
+  font-size: 18;
+  color:#5C163B;
+  margin-top:-15;
+  
+}
+.d
+{
+  width: 80;
+  height: 20;
+  display: block;
+  margin: auto;
+  margin-top: -15;
+  
 }

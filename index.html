@@ -1,204 +1,543 @@
 <!DOCTYPE html>
-<html>
-  
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J:ital,wght@0,100..400;1,100..400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>تجربة</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Digital Accountant</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161921;
+    --border: #252a35;
+    --accent: #00e5a0;
+    --accent2: #ff4d6a;
+    --accent3: #f5c542;
+    --text: #e8ecf4;
+    --muted: #5a6278;
+    --card: #1a1f2e;
+  }
+
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,160,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.15); opacity: 0.6; }
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 500px;
+    animation: fadeIn 0.6s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+
+  header .label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  header h1 span {
+    color: var(--accent);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
+  }
+
+  .card:hover { border-color: #333a4d; }
+
+  .card-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .currency {
+    position: absolute;
+    left: 14px;
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    color: var(--accent);
+    pointer-events: none;
+  }
+
+  input[type="number"] {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px 13px 32px;
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+  input[type="number"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,229,160,0.1);
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+
+  .btn:hover  { opacity: 0.88; transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0d0f14;
+    margin-top: 14px;
+  }
+
+  .btn-secondary {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    margin-top: 10px;
+  }
+
+  .btn-danger {
+    background: rgba(255,77,106,0.15);
+    color: var(--accent2);
+    border: 1px solid rgba(255,77,106,0.2);
+    margin-top: 10px;
+  }
+
+  /* Stats row */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 14px;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+
+  .stat-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .stat-val.green  { color: var(--accent); }
+  .stat-val.red    { color: var(--accent2); }
+  .stat-val.yellow { color: var(--accent3); }
+
+  .stat-lbl {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--accent);
+    color: #0d0f14;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.35s;
+    pointer-events: none;
+    z-index: 99;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .toast.danger {
+    background: var(--accent2);
+    color: #fff;
+  }
+
+  /* Balance bar */
+  .balance-bar-wrap {
+    margin-top: 16px;
+  }
+
+  .balance-bar-track {
+    background: var(--surface);
+    border-radius: 99px;
+    height: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .balance-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.8s cubic-bezier(0.25,1,0.5,1), background 0.5s;
+  }
+
+  .balance-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .warning-banner {
+    background: rgba(255,77,106,0.08);
+    border: 1px solid rgba(255,77,106,0.25);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--accent2);
+    margin-top: 14px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.3px;
+  }
+
+  .good-banner {
+    background: rgba(0,229,160,0.06);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--accent);
+    margin-top: 14px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.3px;
+  }
+
+  /* Expense list */
+  .expense-list {
+    margin-top: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .expense-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    animation: slideIn 0.3s ease both;
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .expense-item:last-child { border-bottom: none; }
+
+  .exp-num  { color: var(--muted); font-size: 11px; margin-right: 10px; }
+  .exp-amt  { color: var(--accent2); }
+
+  /* Sections visibility */
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeIn 0.4s ease both; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+  }
+
+  .reset-btn {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 10px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+  }
+
+  .reset-btn:hover { color: var(--accent2); }
+</style>
 </head>
 <body>
-  <div>
-    <div>
-      <h3 class="p1">Student Digital Accountant</h3>
-    </div>
-    <div class="aaa">
-      <h4 class="p2">Project Introduction</h4>
-      <p class="p3">Student Digital Accountant is a C++ console <br>application designed to help students manage <br>their personal finances. The program allows <br>users to input their monthly income, track <br>cumulative expenses through an interactive <br>menu, and generate real-time financial reports <br>that calculate the remaining balance <br>and provide smart budget warnings.</p>
-      <p class="p4">Step 1: Income Input</p>
-      <p class="p5">The program starts by asking the user to <br>enter their total monthly income.</p>
-    </div>
+
+<div class="wrapper">
+
+  <header>
+    <span class="label">Finance Tracker</span>
+    <h1>Student Digital<br><span>Accountant</span></h1>
+  </header>
+
+  <!-- SCREEN 1: Set Income -->
+  <div id="screen-income" class="screen active">
     <div class="card">
-      
-      <textarea id="code" readonly>cout << "Enter your monthly income: "
-cin >> income;
-      </textarea>
-      <i class="fa-solid fa-copy" onclick="copyCode()" style="cursor: pointer;"></i>
+      <p class="card-title">Setup</p>
+      <label>Monthly Income</label>
+      <div class="input-group">
+        <span class="currency">$</span>
+        <input type="number" id="income-input" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <button class="btn btn-primary" onclick="setIncome()">Start Tracking →</button>
     </div>
-    <div>
-      <h4 class="p7">Step 2: Interactive Menu</h4>
-      <p class="p8">An interactive menu is displayed with three <br>main options: (1) Add Expense, (2) View <br>Financial Report, or (3) Exit.</p>
-    </div>
-    <div>
-    <textarea class="text1"id="code1" readonly>Menu:
-1. Add Expense
-2. View Financial Report
-3. Exit
-Choose an option:
-      </textarea>
-        <i class="fa-solid fa-copy coo" onclick="copyCodee()" style="cursor: pointer;"></i>
-    </div>
-    <div>
-      <h4 class="p9">Step 3: Adding Expenses</h4>
-      <p class="p10">When selecting Option 1, the user enters an <br>expense amount, which is dynamically added <br>to the total expenses.</p>
-    </div>
-    <br>
-    <div>
-    <textarea class="text2"id="code2" readonly>if (choice == 1) {
-cout << "Enter expense amount: ";
-cin >> expense;
-totalExpenses += expense;
-cout << "Expense added successfully.\n";
-        }
-      </textarea>
-        <i class="fa-solid fa-copy coo2" onclick="copyCodeee()" style="cursor: pointer;"></i>
-    </div>
-    <div>
-      <h4 class="p11">Step 4: Generating the Report</h4>
-      <p class="p12">When selecting Option 2, the system <br>calculates the remaining balance and <br>displays a detailed financial report.</p>
-    </div>
-    <br>
-    <div>
-    <textarea class="text3"id="code3" readonly>else if (choice == 2) {
-double balance = income - totalExpenses;
-cout << "\n------ Financial Report ------\n";
-cout << "Monthly Income: " << income << endl;
-cout << "Total Expenses: " << totalExpenses << endl;
-cout << "Remaining Balance: " << balance <<
-endl;</textarea>
-        <i class="fa-solid fa-copy coo2" onclick="copyCodeeee()" style="cursor: pointer;"></i>
-    </div>
-    <div>
-      <h4 class="p13">Step 5: Smart Budget Warning</h4>
-      <p class="p14">If expenses exceed the income, the program <br>automatically triggers a warning <br>message; otherwise, it shows a motivational <br>success message.</p>
-    </div>
-    <br>
-    <div>
-    <textarea class="text4"id="code4" readonly>if (balance < 0) {
-cout << "Warning: Your expenses exceed your income!\n";
-} else {
-cout << "Good job! Your spending is under
-control.\n";
-}</textarea>
-        <i class="fa-solid fa-copy coo2" onclick="copyCodeeeee()" style="cursor: pointer;"></i>
-    </div>
-    <div>
-      <h4 class="p15">Step 6: Exiting the Application</h4>
-      <p class="p16">When selecting Option 3, the program <br>displays a thank-you message and safely <br>terminates the execution.</p>
-    </div>
-    <br>
-    <div>
-    <textarea class="text5"id="code5" readonly>else if (choice == 3) {
-cout << "Thank you for using the program.\n";
-break;
-}
-else {
-cout << "Invalid choice. Please try again.\n;
-}</textarea>
-        <i class="fa-solid fa-copy coo2" onclick="copyCodeeeeee()" style="cursor: pointer;"></i>
-    </div>
-    <hr>
-    <div class="vi">
-      <h3 class="p17">A video <br> explaining <br> how the <br>project works</h3>
-    
-      <video class="ee" width="350" height="140" controls loop muted>
-      <source src="IMG_٢٠٢٦٠٥٢٩_١٨٠٧٣٠_280.mp4" type="video/mp4">
-    متصفحك لا يدعم تشغيل الفيديو. </video>
-    </div>
-    <hr>
-    <h3 class="p18">The complete code for testing:</h3>
-    <div>
-    <textarea class="text6"id="code6" readonly>#include <iostream>
-using namespace std;
+  </div>
 
-int main() {
-    double income = 0;
-    double expense = 0;
-    double totalExpenses = 0;
-    int choice;
+  <!-- SCREEN 2: Main Dashboard -->
+  <div id="screen-main" class="screen">
 
-    cout << "=====================================\n";
-    cout << "     Student Digital Accountant\n";
-    cout << "=====================================\n";
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-val green" id="stat-income">$0</div>
+        <div class="stat-lbl">Income</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val red" id="stat-expenses">$0</div>
+        <div class="stat-lbl">Spent</div>
+      </div>
+      <div class="stat">
+        <div class="stat-val yellow" id="stat-balance">$0</div>
+        <div class="stat-lbl">Balance</div>
+      </div>
+    </div>
 
-    cout << "Enter your monthly income: ";
-    cin >> income;
-    
+    <!-- Add Expense -->
+    <div class="card">
+      <p class="card-title">Add Expense</p>
+      <label>Amount</label>
+      <div class="input-group">
+        <span class="currency">$</span>
+        <input type="number" id="expense-input" placeholder="0.00" min="0" step="0.01">
+      </div>
+      <button class="btn btn-primary" onclick="addExpense()">+ Add Expense</button>
+    </div>
 
-    while (true) {
-        cout << "\nMenu:\n";
-        cout << "1. Add Expense\n";
-        cout << "2. View Financial Report\n";
-        cout << "3. Exit\n";
-        cout << "Choose an option: ";
-        cin >> choice;
-        if (choice == 1) {
-            cout << "Enter expense amount: ";
-            cin >> expense;
-            totalExpenses += expense;
-            cout << "Expense added successfully.\n";
-        }
-        else if (choice == 2) {
-            double balance = income - totalExpenses;
+    <!-- Report Card -->
+    <div class="card" id="report-card">
+      <p class="card-title">Financial Report</p>
 
-            cout << "\n------ Financial Report ------\n";
-            cout << "Monthly Income: " << income << endl;
-            cout << "Total Expenses: " << totalExpenses << endl;
-            cout << "Remaining Balance: " << balance << endl;
+      <div class="balance-bar-wrap">
+        <div class="balance-bar-track">
+          <div class="balance-bar-fill" id="bar-fill" style="width:0%;background:var(--accent)"></div>
+        </div>
+        <div class="balance-bar-labels">
+          <span>$0 spent</span>
+          <span id="bar-label-end">$0 income</span>
+        </div>
+      </div>
 
-            if (balance < 0) {
-                cout << "Warning: Your expenses exceed your income!\n";
-            } else {
-                cout << "Good job! Your spending is under control.\n";
-            }
-            cout << "------------------------------\n";
-        }
-        else if (choice == 3) {
-            cout << "Thank you for using the program.\n";
-            break;
-        }
-        else {
-            cout << "Invalid choice. Please try again.\n";
-        }
+      <div id="report-message"></div>
+
+      <!-- Expense Log -->
+      <div id="expense-list-wrap" style="display:none;">
+        <hr class="divider">
+        <p class="card-title">Expense Log</p>
+        <div class="expense-list" id="expense-list"></div>
+      </div>
+    </div>
+
+    <div class="reset-btn" onclick="resetApp()">↩ Reset & Start Over</div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  let income = 0;
+  let expenses = [];
+
+  function setIncome() {
+    const val = parseFloat(document.getElementById('income-input').value);
+    if (isNaN(val) || val < 0) { showToast('Enter a valid income amount', true); return; }
+    income = val;
+    switchScreen('screen-main');
+    updateDashboard();
+    showToast('Income set to $' + fmt(income));
+  }
+
+  function addExpense() {
+    const val = parseFloat(document.getElementById('expense-input').value);
+    if (isNaN(val) || val <= 0) { showToast('Enter a valid expense amount', true); return; }
+    expenses.push(val);
+    document.getElementById('expense-input').value = '';
+    updateDashboard();
+    showToast('Expense of $' + fmt(val) + ' added');
+  }
+
+  function updateDashboard() {
+    const total = expenses.reduce((a,b) => a+b, 0);
+    const balance = income - total;
+
+    // Stats
+    document.getElementById('stat-income').textContent = '$' + fmt(income);
+    document.getElementById('stat-expenses').textContent = '$' + fmt(total);
+
+    const balEl = document.getElementById('stat-balance');
+    balEl.textContent = '$' + fmt(Math.abs(balance));
+    balEl.style.color = balance < 0 ? 'var(--accent2)' : balance === 0 ? 'var(--muted)' : 'var(--accent3)';
+
+    // Bar
+    const pct = income > 0 ? Math.min((total / income) * 100, 100) : 0;
+    const fill = document.getElementById('bar-fill');
+    fill.style.width = pct + '%';
+    fill.style.background = pct >= 100 ? 'var(--accent2)' : pct > 70 ? 'var(--accent3)' : 'var(--accent)';
+    document.getElementById('bar-label-end').textContent = '$' + fmt(income) + ' income';
+
+    // Message
+    const msg = document.getElementById('report-message');
+    if (balance < 0) {
+      msg.innerHTML = `<div class="warning-banner">⚠ Your expenses exceed your income by $${fmt(Math.abs(balance))}!</div>`;
+    } else if (balance === 0) {
+      msg.innerHTML = `<div class="warning-banner">⚠ You've used your entire budget.</div>`;
+    } else {
+      msg.innerHTML = `<div class="good-banner">✓ Good job! $${fmt(balance)} remaining — you're on track.</div>`;
     }
-    return 0;
-}</textarea>
-        <i class="fa-solid fa-copy coo2" onclick="copyCodeeeeeee()" style="cursor: pointer;"></i>
-    </div>
-    <h4 class="p19">Or</h4>
-    <p class="p20">Click <span class="p11">Run Code</span> for the actual experience</p>
-    <a href="https://onlinegdb.com/znO9G_ZPk" target="_blank" class="run-btn">
-    <i class="fa-solid fa-play"></i> Run Code
-</a>
 
+    // Expense list
+    const listWrap = document.getElementById('expense-list-wrap');
+    const list = document.getElementById('expense-list');
+    if (expenses.length > 0) {
+      listWrap.style.display = 'block';
+      list.innerHTML = expenses.map((e, i) =>
+        `<div class="expense-item">
+          <span><span class="exp-num">#${i+1}</span> Expense</span>
+          <span class="exp-amt">-$${fmt(e)}</span>
+        </div>`
+      ).join('');
+      list.scrollTop = list.scrollHeight;
+    } else {
+      listWrap.style.display = 'none';
+    }
+  }
 
-  <script>
-function copyCodee(){
-    navigator.clipboard.writeText(code1.value);
-}
-function copyCode(){
-    navigator.clipboard.writeText(code.value);
-}
-function copyCodeee(){
-    navigator.clipboard.writeText(code2.value);
-}
-function copyCodeeee(){
-    navigator.clipboard.writeText(code3.value);
-}
-function copyCodeeeee(){
-    navigator.clipboard.writeText(code4.value);
-}
-function copyCodeeeeee(){
-    navigator.clipboard.writeText(code5.value);
-}
-function copyCodeeeeeee(){
-    navigator.clipboard.writeText(code6.value);
-}
+  function resetApp() {
+    income = 0; expenses = [];
+    document.getElementById('income-input').value = '';
+    switchScreen('screen-income');
+    showToast('Reset complete');
+  }
+
+  function switchScreen(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function fmt(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  let toastTimer;
+  function showToast(msg, danger = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast show' + (danger ? ' danger' : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { t.classList.remove('show'); }, 2500);
+  }
+
+  // Enter key support
+  document.getElementById('income-input').addEventListener('keydown', e => { if (e.key === 'Enter') setIncome(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && document.getElementById('expense-input') === document.activeElement) addExpense();
+  });
 </script>
-
-
 </body>
 </html>

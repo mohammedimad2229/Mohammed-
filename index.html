@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تذكرة</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: #ffffff;
+      font-family: 'Amiri', serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px 60px;
+    }
+    .profile-wrap { margin-bottom: 12px; animation: fadeDown 0.7s ease both; }
+    .profile-img {
+      width: 130px; height: 130px;
+      border-radius: 50%; object-fit: cover;
+      border: 3px solid #2a2a2a; display: block;
+    }
+    .handle {
+      font-family: 'Scheherazade New', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: #1a1a1a; margin-bottom: 32px;
+      letter-spacing: 0.02em;
+      animation: fadeDown 0.7s ease 0.1s both;
+    }
+    .row {
+      display: flex; gap: 14px;
+      width: 100%; max-width: 460px;
+      justify-content: center; margin-bottom: 14px;
+    }
+    .btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 13px 22px; border-radius: 10px;
+      text-decoration: none;
+      font-family: 'Amiri', serif; font-size: 1.05rem; font-weight: 700;
+      color: #ffffff; background: #1a1a1a;
+      border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+      flex: 1; justify-content: center; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.22); background: #333; }
+    .btn:active { transform: translateY(-1px); }
+    .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .row.full .btn { flex: none; width: 100%; }
+    .btn.telegram:hover  { background: #229ed9; }
+    .btn.instagram:hover { background: #c13584; }
+    .btn.twitter:hover   { background: #000; }
+    .btn.tiktok:hover    { background: #010101; }
+    .btn.youtube:hover   { background: #ff0000; }
+    .row:nth-child(1) { animation: fadeUp 0.65s ease 0.2s both; }
+    .row:nth-child(2) { animation: fadeUp 0.65s ease 0.32s both; }
+    .row:nth-child(3) { animation: fadeUp 0.65s ease 0.44s both; }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
+    @keyframes fadeUp   { from { opacity:0; transform:translateY(16px);  } to { opacity:1; transform:none; } }
+  </style>
+</head>
+<body>
+  <div class="profile-wrap">
+    <img class="profile-img" id="logo" src="q01jv4.jpg" alt="تذكرة" />
+  </div>
+  <div class="handle">@8tadkr</div>
+
+  <!-- Row 1: Telegram -->
+  <div class="row full">
+    <a class="btn telegram" href="https://t.me/tadkr8" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/></svg>
+      تيليغرام
+    </a>
+  </div>
+
+  <!-- Row 2: Instagram + Twitter -->
+  <div class="row">
+    <a class="btn instagram" href="https://www.instagram.com/8tadkr?igsh=NHd1ZGc1OGJhN3Qz" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      انستغرام
+    </a>
+    <a class="btn twitter" href="https://x.com/8tadkr" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      تويتر
+    </a>
+  </div>
+
+  <!-- Row 3: TikTok + YouTube -->
+  <div class="row">
+    <a class="btn tiktok" href="https://www.tiktok.com/@8tadkr?_r=1&_t=ZS-9717n7g6o8D" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      تيك توك
+    </a>
+    <a class="btn youtube" href="https://youtube.com/@8tadkr?si=OlhLS-OHAR1iSYBl" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      يوتيوب
+    </a>
+  </div>
+</body>
+</html>
